@@ -1,13 +1,4 @@
-**Interested in contributing a code example?** 
-
-Please take a look at our [contribution guidelines](CONTRIBUTING.md) before
-getting started. Thanks!
-
-<!-- Before submitting your code, please delete the above code contribution
-instructions and this comment as they will not be relevant in your code 
-example README.md.-->
-
-# <demo_name>
+# SVD Challenge
 
 Describe your example and specify what it is demonstrating. Consider the
 following questions:
