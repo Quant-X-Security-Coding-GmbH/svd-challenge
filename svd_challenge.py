@@ -1,4 +1,10 @@
-from scipy import *
+import numpy as np
+import scipy.sparse as sparse, scipy.stats as stats
+#import matplotlib.pyplot as plt
+#from timer import *
+from scipy import linalg
+
+
 # Copyright [yyyy] [name of copyright owner]
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -22,10 +28,11 @@ Things to do:
 """
 
 # Singular value decomposition. The command linalg.svd will return U,V^H,
-# and o as an array of the singular values. To obtain the matrix Σ, use
+# and o as an array of the singular values. To obtain the matrix, use
 # linalg.diagsvd. The following example illustrates the use of linalg.svd:
-def decompositionSingular():
-    A = np.array([[1, 2, 3], [4, 5, 6]])
+
+
+def decompositionSingular(A):
     M, N = A.shape
     U, s, Vh = linalg.svd(A)
     Sig = linalg.diagsvd(s, M, N)
@@ -34,3 +41,15 @@ def decompositionSingular():
     print(Sig)
     print(Vh)
     print(U.dot(Sig.dot(Vh)))  #check computation
+
+
+np.random.seed(10)
+A = sparse.random(50, 50, density=0.25, data_rvs=stats.norm(loc=5, scale=100).rvs)
+                # n x m,   sparsity,      location and range of matrix values
+
+print(A.toarray())
+#plt.imshow(A.toarray())
+#plt.show()
+
+
+decompositionSingular(A)
