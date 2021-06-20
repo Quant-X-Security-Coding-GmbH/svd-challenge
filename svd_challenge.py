@@ -1,3 +1,4 @@
+from scipy import *
 # Copyright [yyyy] [name of copyright owner]
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -19,3 +20,17 @@ Things to do:
  - Add demo code below
  - Format code so that it conforms with PEP 8
 """
+
+# Singular value decomposition. The command linalg.svd will return U,V^H,
+# and o as an array of the singular values. To obtain the matrix Σ, use
+# linalg.diagsvd. The following example illustrates the use of linalg.svd:
+def decompositionSingular():
+    A = np.array([[1, 2, 3], [4, 5, 6]])
+    M, N = A.shape
+    U, s, Vh = linalg.svd(A)
+    Sig = linalg.diagsvd(s, M, N)
+    U, Vh = U, Vh
+    print(U)
+    print(Sig)
+    print(Vh)
+    print(U.dot(Sig.dot(Vh)))  #check computation
