@@ -6,7 +6,7 @@ We could use sparse matrices as to be generated according to this paper by S. Ru
 https://www.tuhh.de/ti3/paper/rump/NiRuOi11.pdf
 
 One method described is the generation of ill-conditioned matrices similar to the following
-companion matrix: Let A be an nxn integer matrix :
+companion matrix: Let A be an nxn integer matrix of the following form :
 
 
            a1  a2  a3  a4  ...  a(n-1)  a(n)
@@ -14,7 +14,7 @@ companion matrix: Let A be an nxn integer matrix :
            1  -l1  0   0   ...    0      0
            
            0   1  -l2  0   ...    0      0
-   A =            
+             
            0   0    1 -l3  ...    0      0
            
            ...  ...   ...  ...    ...   ...
