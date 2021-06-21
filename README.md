@@ -1,5 +1,16 @@
 # SVD Challenge
 
+## Possible benchmark matrices
+
+We could use sparse matrices as to be generated according to this paper by S. Rump:
+https://www.tuhh.de/ti3/paper/rump/NiRuOi11.pdf
+
+One method described is the generation of ill-conditioned matrices similar to the following
+companion matrix:
+
+
+
+
 Describe your example and specify what it is demonstrating. Consider the
 following questions:
 
