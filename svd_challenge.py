@@ -1,8 +1,7 @@
 import numpy as np
 import scipy.sparse.linalg as sparse, scipy.stats as stats, scipy.sparse
-#import matplotlib.pyplot as plt
-#from timer import *
-from scipy import linalg
+from timer import Timer
+# import matplotlib.pyplot as plt
 
 
 # Copyright [yyyy] [name of copyright owner]
@@ -28,7 +27,7 @@ Things to do:
 """
 
 
-def random_s_matrix(matrix, dimension_x, dimension_y, dens, value_type, r_seed=None, location=0, scl=100):
+def random_s_matrix(m, n, dens, value_type, r_seed=None, location=0, scl=100):
 
     if r_seed:
         np.random.seed(r_seed)
@@ -36,16 +35,16 @@ def random_s_matrix(matrix, dimension_x, dimension_y, dens, value_type, r_seed=N
     try:
         if value_type == "binary":
             matrix = scipy.sparse.random(
-                dimension_x,
-                dimension_y,
+                m,
+                n,
                 density=dens,
                 data_rvs=np.ones
             )
 
         elif value_type == "float":
             matrix = scipy.sparse.random(
-                dimension_x,
-                dimension_y,
+                m,
+                n,
                 density=dens,
                 data_rvs=stats.norm(
                     loc=location,
@@ -57,7 +56,7 @@ def random_s_matrix(matrix, dimension_x, dimension_y, dens, value_type, r_seed=N
 
     except ValueError:
         print("A problem occurred. To call this function, the following arguments can be used:"
-              "random_s_matrix(matrix, m, n, density, value_type, *random_seed, *location, *scale)")
+              "random_s_matrix(m, n, density, value_type, *random_seed, *location, *scale)")
         return
 
 
@@ -73,17 +72,12 @@ def cond_num(s):
     return c
 
 
-np.random.seed(25)
-A = scipy.sparse.random(50, 50, density=0.25, data_rvs=np.ones)  # binary
+Timer().start()
+cond_num(decomposition_singular(random_s_matrix(10, 10, 0.25, "binary", r_seed=15)))
+Timer().stop()
 
-# B = scipy.sparse.random(50, 50, density=0.25, data_rvs=stats.norm(loc=0, scale=100).rvs)  # float values
-                       # n x m,   sparsity,         location and range of matrix values
-
-
-print(cond_num(decomposition_singular(A)))
-# print(A.toarray())
+# print(random_s_matrix(10, 10, 0.25, "binary", r_seed=15).toarray())
 # plt.imshow(A.toarray())
 # plt.show()
 
 
-decomposition_singular(A)
