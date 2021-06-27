@@ -1,5 +1,5 @@
 import numpy as np
-import scipy.sparse as sparse, scipy.stats as stats
+import scipy.sparse.linalg as sparse, scipy.stats as stats, scipy.sparse
 #import matplotlib.pyplot as plt
 #from timer import *
 from scipy import linalg
@@ -27,29 +27,63 @@ Things to do:
  - Format code so that it conforms with PEP 8
 """
 
-# Singular value decomposition. The command linalg.svd will return U,V^H,
-# and o as an array of the singular values. To obtain the matrix, use
-# linalg.diagsvd. The following example illustrates the use of linalg.svd:
+
+def random_s_matrix(matrix, dimension_x, dimension_y, dens, value_type, r_seed=None, location=0, scl=100):
+
+    if r_seed:
+        np.random.seed(r_seed)
+
+    try:
+        if value_type == "binary":
+            matrix = scipy.sparse.random(
+                dimension_x,
+                dimension_y,
+                density=dens,
+                data_rvs=np.ones
+            )
+
+        elif value_type == "float":
+            matrix = scipy.sparse.random(
+                dimension_x,
+                dimension_y,
+                density=dens,
+                data_rvs=stats.norm(
+                    loc=location,
+                    scale=scl
+                ).rvs
+            )
+
+        return matrix
+
+    except ValueError:
+        print("A problem occurred. To call this function, the following arguments can be used:"
+              "random_s_matrix(matrix, m, n, density, value_type, *random_seed, *location, *scale)")
+        return
 
 
-def decompositionSingular(A):
+def decomposition_singular(A):
     M, N = A.shape
-    U, s, Vh = linalg.svd(A)
-    Sig = linalg.diagsvd(s, M, N)
-    U, Vh = U, Vh
-    print(U)
-    print(Sig)
-    print(Vh)
-    print(U.dot(Sig.dot(Vh)))  #check computation
+    U, s, Vh = sparse.svds(A)
+    return s
 
 
-np.random.seed(10)
-A = sparse.random(50, 50, density=0.25, data_rvs=stats.norm(loc=5, scale=100).rvs)
-                # n x m,   sparsity,      location and range of matrix values
-
-print(A.toarray())
-#plt.imshow(A.toarray())
-#plt.show()
+def cond_num(s):
+    # Computes the condition number
+    c = s[-1]/s[0]
+    return c
 
 
-decompositionSingular(A)
+np.random.seed(25)
+A = scipy.sparse.random(50, 50, density=0.25, data_rvs=np.ones)  # binary
+
+# B = scipy.sparse.random(50, 50, density=0.25, data_rvs=stats.norm(loc=0, scale=100).rvs)  # float values
+                       # n x m,   sparsity,         location and range of matrix values
+
+
+print(cond_num(decomposition_singular(A)))
+# print(A.toarray())
+# plt.imshow(A.toarray())
+# plt.show()
+
+
+decomposition_singular(A)
