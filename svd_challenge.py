@@ -27,6 +27,9 @@ Things to do:
 """
 
 
+svd_timer = Timer()
+
+
 def random_s_matrix(m, n, dens, value_type, r_seed=None, location=0, scl=100):
 
     if r_seed:
@@ -72,10 +75,11 @@ def cond_num(s):
     return c
 
 
-Timer().start()
+svd_timer.start()
 cond_num(decomposition_singular(random_s_matrix(10, 10, 0.25, "binary", r_seed=15)))
-Timer().stop()
+svd_timer.stop()
 
+print(cond_num(decomposition_singular(random_s_matrix(10, 10, 0.25, "binary", r_seed=15))))
 # print(random_s_matrix(10, 10, 0.25, "binary", r_seed=15).toarray())
 # plt.imshow(A.toarray())
 # plt.show()
