@@ -64,8 +64,7 @@ def random_s_matrix(m, n, dens, value_type, r_seed=None, location=0, scl=100):
         return
 
 
-def decomposition_singular(A):
-    M, N = A.shape
+def decomposition_singular_values(A):
     U, s, Vh = sparse.svds(A)
     return s
 
@@ -76,10 +75,10 @@ def cond_num(s):
     return c
 
 
-A = random_s_matrix(10, 10, 0.25, "binary", r_seed=15)
+A = random_s_matrix(10, 10, 0.25, value_type="binary", r_seed=15)
 
 svd_timer.start()
-cond_num(decomposition_singular(A))
+cond_num(decomposition_singular_values(A))
 svd_timer.stop()
 
 print(cond_num(decomposition_singular(A)))
