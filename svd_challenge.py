@@ -76,11 +76,13 @@ def cond_num(s):
     return c
 
 
+A = random_s_matrix(10, 10, 0.25, "binary", r_seed=15)
+
 svd_timer.start()
-cond_num(decomposition_singular(random_s_matrix(10, 10, 0.25, "binary", r_seed=15)))
+cond_num(decomposition_singular(A))
 svd_timer.stop()
 
-print(cond_num(decomposition_singular(random_s_matrix(10, 10, 0.25, value_type="binary", r_seed=15))))
+print(cond_num(decomposition_singular(A)))
 # print(random_s_matrix(10, 10, 0.25, "binary", r_seed=15).toarray())
 # plt.imshow(A.toarray())
 # plt.show()
