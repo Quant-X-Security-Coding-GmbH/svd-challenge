@@ -1,4 +1,9 @@
-from scipy import *
+import numpy as np
+import scipy.sparse.linalg as sparse, scipy.stats as stats, scipy.sparse
+from timer import Timer
+# import matplotlib.pyplot as plt
+
+
 # Copyright [yyyy] [name of copyright owner]
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -21,16 +26,64 @@ Things to do:
  - Format code so that it conforms with PEP 8
 """
 
-# Singular value decomposition. The command linalg.svd will return U,V^H,
-# and o as an array of the singular values. To obtain the matrix Σ, use
-# linalg.diagsvd. The following example illustrates the use of linalg.svd:
-def decompositionSingular():
-    A = np.array([[1, 2, 3], [4, 5, 6]])
-    M, N = A.shape
-    U, s, Vh = linalg.svd(A)
-    Sig = linalg.diagsvd(s, M, N)
-    U, Vh = U, Vh
-    print(U)
-    print(Sig)
-    print(Vh)
-    print(U.dot(Sig.dot(Vh)))  #check computation
+
+svd_timer = Timer()
+
+
+def random_s_matrix(m, n, dens, value_type, r_seed=None, location=0, scl=100):
+    # Creates a random matrix with fixed dimensions, sparsity, and further features
+
+    if r_seed:
+        np.random.seed(r_seed)
+
+    try:
+        if value_type == "binary":
+            matrix = scipy.sparse.random(
+                m,
+                n,
+                density=dens,
+                data_rvs=np.ones
+            )
+
+        elif value_type == "float":
+            matrix = scipy.sparse.random(
+                m,
+                n,
+                density=dens,
+                data_rvs=stats.norm(
+                    loc=location,
+                    scale=scl
+                ).rvs
+            )
+
+        return matrix
+
+    except ValueError:
+        print("A problem occurred. To call this function, the following arguments can be used:"
+              "random_s_matrix(m, n, density, value_type, *random_seed, *location, *scale)")
+        return
+
+
+def decomposition_singular_values(A):
+    U, s, Vh = sparse.svds(A)
+    return s
+
+
+def cond_num(s):
+    # Computes the condition number
+    c = s[-1]/s[0]
+    return c
+
+
+A = random_s_matrix(10, 10, 0.25, value_type="binary", r_seed=15)
+
+svd_timer.start()
+cond_num(decomposition_singular_values(A))
+svd_timer.stop()
+
+print(cond_num(decomposition_singular(A)))
+# print(random_s_matrix(10, 10, 0.25, "binary", r_seed=15).toarray())
+# plt.imshow(A.toarray())
+# plt.show()
+
+
