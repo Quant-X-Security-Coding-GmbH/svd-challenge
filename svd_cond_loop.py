@@ -1,70 +1,57 @@
 from svd_challenge import decomposition_singular_values, random_s_matrix, cond_num, svd_timer
 
-matrix_list = [
-    {"n": 50, "m": 50, "density": 0.1},
-    {"n": 50, "m": 10, "density": 0.1},
-    {"n": 50, "m": 50, "density": 0.25},
-    {"n": 50, "m": 10, "density": 0.25},
-    {"n": 100, "m": 100, "density": 0.1},
-    {"n": 100, "m": 50, "density": 0.1},
-    {"n": 100, "m": 10, "density": 0.1},
-    {"n": 100, "m": 100, "density": 0.25},
-    {"n": 100, "m": 50, "density": 0.25},
-    {"n": 100, "m": 10, "density": 0.25},
-    {"n": 1000, "m": 1000, "density": 0.1},
-    {"n": 1000, "m": 500, "density": 0.1},
-    {"n": 1000, "m": 100, "density": 0.1},
-    {"n": 1000, "m": 1000, "density": 0.25},
-    {"n": 1000, "m": 500, "density": 0.25},
-    {"n": 1000, "m": 100, "density": 0.25},
-    {"n": 10000, "m": 10000, "density": 0.1},
-    {"n": 10000, "m": 5000, "density": 0.1},
-    {"n": 10000, "m": 1000, "density": 0.1},
-    {"n": 10000, "m": 10000, "density": 0.25},
-    {"n": 10000, "m": 5000, "density": 0.25},
-    {"n": 10000, "m": 1000, "density": 0.25},
-    {"n": 100000, "m": 100000, "density": 0.1},
-    {"n": 100000, "m": 50000, "density": 0.1},
-    {"n": 100000, "m": 10000, "density": 0.1},
-    {"n": 100000, "m": 100000, "density": 0.25},
-    {"n": 100000, "m": 50000, "density": 0.25},
-    {"n": 100000, "m": 10000, "density": 0.25}
-    ]
 
-
-def looping_application(dic):
+def looping_application():
     i = 0
-    while i <= len(dic)-1:
-        # Creating new matrix for each iteration
-        A = random_s_matrix(m=dic[i]["m"], n=dic[i]["n"], dens=dic[i]["density"], value_type="binary")
+    j = 0
+    a = 50
+    b = 50
+    while (A["m"] * A["n"]) <= 500000:
+        if j == 0:
+            d = 0.1
+        else:
+            d = 0.25
+        if i == 1:
+            b = a/2
+        elif i == 2:
+            b = a/10
+            i = 0
+            if j == 0:
+                j += 1
+            else:
+                j -= 1
+        try:
+            # Creating new matrix for each iteration
+            A = random_s_matrix(m=a, n=b, dens=d, value_type="binary")
 
-        # Print dimensions
-        print(
-            "m: " + str(dic[i]["m"]),
-            "n: " + str(dic[i]["n"])
-        )
+            # Print dimensions
+            print(
+                "m: " + str(A["m"]),
+                "n: " + str(A["n"])
+            )
 
-        # Print density
-        print("Density: " + str(dic[i]["density"]))
+            # Print density
+            print("Density: " + str(A["dens"]))
 
-        # Print min/max singular value
-        print(
-            "Max Singular Value: " + str(max(decomposition_singular_values(A))),
-            "Min Singular Value: " + str(min(decomposition_singular_values(A)))
-        )
+            # Print min/max singular value
+            print(
+                "Max Singular Value: " + str(max(decomposition_singular_values(A))),
+                "Min Singular Value: " + str(min(decomposition_singular_values(A)))
+            )
 
-        # Print condition number
-        print("Condition Number: " + str(cond_num(decomposition_singular_values(A))))
+            # Print condition number
+            print("Condition Number: " + str(cond_num(decomposition_singular_values(A))))
 
-        # Print computation time
-        svd_timer.start()
-        cond_num(decomposition_singular_values(A))
-        svd_timer.stop()
+            # Print computation time
+            svd_timer.start()
+            cond_num(decomposition_singular_values(A))
+            svd_timer.stop()
 
-        print("")
-        i += 1
+            print("")
 
+        except MemoryError:
+            return
     return
 
 
-looping_application(matrix_list)
+looping_application()
