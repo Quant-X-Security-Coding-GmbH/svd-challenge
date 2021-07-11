@@ -34,7 +34,7 @@ matrix_list = [
 
 def looping_application(dic):
     i = 0
-    while i <= int(len(dict)-1):
+    while i <= int(len(dic)-1):
         # Creating new matrix for each iteration
         A = random_s_matrix(m=dic[i]["m"], n=dic[i]["n"], dens=dic[i]["density"], value_type="binary")
 
