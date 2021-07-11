@@ -61,6 +61,7 @@ def looping_application(dic):
         cond_num(decomposition_singular_values(A))
         svd_timer.stop()
 
+        print("")
         i += 1
 
     return
