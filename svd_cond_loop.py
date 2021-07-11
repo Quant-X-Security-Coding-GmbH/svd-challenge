@@ -7,7 +7,7 @@ def looping_application():
     a = 50
     b = a
     five = True
-    while (A["m"] * A["n"]) <= 500000:
+    while (a * b) <= 500000:
         if j == 0:
             d = 0.1
         else:
@@ -33,12 +33,12 @@ def looping_application():
 
             # Print dimensions
             print(
-                "m: " + str(A["m"]),
-                "n: " + str(A["n"])
+                "m: " + str(a),
+                "n: " + str(b)
             )
 
             # Print density
-            print("Density: " + str(A["dens"]))
+            print("Density: " + str(d))
 
             # Print min/max singular value
             print(
