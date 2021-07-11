@@ -75,7 +75,7 @@ def cond_num(s):
     return c
 
 
-A = random_s_matrix(10, 10, 0.25, value_type="binary", r_seed=15)
+A = random_s_matrix(50000, 10000, 0.1, value_type="binary")
 
 svd_timer.start()
 cond_num(decomposition_singular_values(A))
