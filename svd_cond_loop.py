@@ -5,7 +5,8 @@ def looping_application():
     i = 0
     j = 0
     a = 50
-    b = 50
+    b = a
+    five = True
     while (A["m"] * A["n"]) <= 500000:
         if j == 0:
             d = 0.1
@@ -20,6 +21,12 @@ def looping_application():
                 j += 1
             else:
                 j -= 1
+                if five:
+                    a *= 2
+                    five = False
+                elif not five:
+                    a *= 5
+                    five = True
         try:
             # Creating new matrix for each iteration
             A = random_s_matrix(m=a, n=b, dens=d, value_type="binary")
