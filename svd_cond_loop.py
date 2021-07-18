@@ -7,7 +7,7 @@ def looping_application():
     a = 50
     b = a
     five = True
-    while (a * b) <= 50000:
+    while (a * b) <= 500000000:
         if j == 0:
             d = 0.1
         else:
