@@ -7,24 +7,25 @@ def looping_application():
     a = 50
     b = a
     five = True
-    while (a * b) <= 500000:
+    while (a * b) <= 50000:
         if j == 0:
             d = 0.1
         else:
             d = 0.25
         if i == 1:
             b = a/2
-        elif i == 2:
-            b = a/10
             i = 0
+        else:
+            b = a/10
+            i = 1
             if j == 0:
-                j += 1
+                j = 1
             else:
-                j -= 1
+                j = 0
                 if five:
                     a *= 2
                     five = False
-                elif not five:
+                else:
                     a *= 5
                     five = True
         try:
