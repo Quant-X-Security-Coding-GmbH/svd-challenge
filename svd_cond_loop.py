@@ -35,17 +35,18 @@ def looping_application():
                     print("Density: " + str(d))
 
                     # Print min/max singular value
+                    largest, smallest = SVD().decomposition_singular_values(A)
                     print(
-                        "Max Singular Value: " + str(max(SVD().decomposition_singular_values(A))),
-                        "; Min Singular Value: " + str(min(SVD().decomposition_singular_values(A)))
+                        "Max Singular Value: " + str(largest),
+                        "Min Singular Value: " + str(smallest)
                     )
 
                     # Print condition number
-                    print("Condition Number: " + str(SVD().cond_num(SVD().decomposition_singular_values(A))))
+                    print("Condition Number: " + str(SVD().cond_num(largest, smallest)))
 
                     # Print computation time
                     timed.start()
-                    SVD().cond_num(SVD().decomposition_singular_values(A))
+                    SVD().cond_num(largest, smallest)
                     timed.stop()
 
                     print("")
@@ -61,4 +62,4 @@ def looping_application():
     return
 
 
-#looping_application()
+looping_application()
