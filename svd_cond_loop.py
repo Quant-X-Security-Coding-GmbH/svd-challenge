@@ -10,7 +10,7 @@ def looping_application():
     b = a
     five = True
 
-    while (a * b) <= 500000000:  # ~6.5 RAM needed to compute at max size. 6.5 GiB RAM ~ 500,000,000 computed elements
+    while (a * b) <= 500000000:  # ~6.5GiB RAM needed to compute max size. 6.5 GiB RAM ~ 500,000,000 computed elements
         for i in range(2):
             if i == 0:
                 d = 0.1
@@ -61,4 +61,4 @@ def looping_application():
     return
 
 
-looping_application()
+#looping_application()
