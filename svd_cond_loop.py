@@ -17,6 +17,7 @@ def looping_application():
             else:
                 d = 0.25
             for j in range(3):
+                b = a
                 if j == 1:
                     b = a/2
                 elif j == 2:
