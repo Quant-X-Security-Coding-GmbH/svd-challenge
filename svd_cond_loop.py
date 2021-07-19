@@ -1,21 +1,22 @@
 from svd_challenge import SVD
 from timer import Timer
 
+''' For some reason this file executes all methods that would be executed by the svd_challenge.py file when run. '''
+timed = Timer()
 
-svd_timer = Timer()
 
 def looping_application():
     a = 50
     b = a
     five = True
 
-    while (a * b) <= 500000000:
-        for i in range(1):
+    while (a * b) <= 500000000:  # ~6.5 RAM needed to compute at max size. 6.5 RAM ~ 500,000,000 computed elements
+        for i in range(2):
             if i == 0:
                 d = 0.1
             else:
                 d = 0.25
-            for j in range(2):
+            for j in range(3):
                 if j == 1:
                     b = a/2
                 elif j == 2:
@@ -43,9 +44,9 @@ def looping_application():
                     print("Condition Number: " + str(SVD().cond_num(SVD().decomposition_singular_values(A))))
 
                     # Print computation time
-                    svd_timer.start()
+                    timed.start()
                     SVD().cond_num(SVD().decomposition_singular_values(A))
-                    svd_timer.stop()
+                    timed.stop()
 
                     print("")
 
@@ -56,7 +57,7 @@ def looping_application():
             a *= 2
         else:
             a *= 5
-            five = True
+            five = False
     return
 
 

@@ -34,6 +34,8 @@ class SVD(object):
 
     def random_s_matrix(self, m, n, dens, value_type, r_seed=None, location=0, scl=100):
         # Creates a random matrix with fixed dimensions, sparsity, and further features
+        ''' DOES NOT ACCEPT FLOAT VALUES FOR DIMENSIONS (m, n)
+            due to the usage of scipy.sparse.random as well as simple mathematics '''
 
         if r_seed:
             np.random.seed(r_seed)
@@ -41,16 +43,16 @@ class SVD(object):
         try:
             if value_type == "binary":
                 matrix = scipy.sparse.random(
-                    m,
-                    n,
+                    int(m),
+                    int(n),
                     density=dens,
                     data_rvs=np.ones
                 )
 
             elif value_type == "float":
                 matrix = scipy.sparse.random(
-                    m,
-                    n,
+                    int(m),
+                    int(n),
                     density=dens,
                     data_rvs=stats.norm(
                         loc=location,
@@ -75,13 +77,13 @@ class SVD(object):
         return c
 
 
-A = SVD().random_s_matrix(50000, 10000, 0.1, value_type="binary")
+#A = SVD().random_s_matrix(50, 50, 0.1, value_type="binary")
 
-svd_timer.start()
-SVD().cond_num(SVD().decomposition_singular_values(A))
-svd_timer.stop()
+#svd_timer.start()
+#SVD().cond_num(SVD().decomposition_singular_values(A))
+#svd_timer.stop()
 
-print(SVD().cond_num(SVD().decomposition_singular_values(A)))
+# print(SVD().cond_num(SVD().decomposition_singular_values(A)))
 # print(random_s_matrix(10, 10, 0.25, "binary", r_seed=15).toarray())
 # plt.imshow(A.toarray())
 # plt.show()
