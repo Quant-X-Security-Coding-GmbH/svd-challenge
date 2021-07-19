@@ -30,58 +30,58 @@ Things to do:
 svd_timer = Timer()
 
 
-def random_s_matrix(m, n, dens, value_type, r_seed=None, location=0, scl=100):
-    # Creates a random matrix with fixed dimensions, sparsity, and further features
+class SVD(object):
 
-    if r_seed:
-        np.random.seed(r_seed)
+    def random_s_matrix(self, m, n, dens, value_type, r_seed=None, location=0, scl=100):
+        # Creates a random matrix with fixed dimensions, sparsity, and further features
 
-    try:
-        if value_type == "binary":
-            matrix = scipy.sparse.random(
-                m,
-                n,
-                density=dens,
-                data_rvs=np.ones
-            )
+        if r_seed:
+            np.random.seed(r_seed)
 
-        elif value_type == "float":
-            matrix = scipy.sparse.random(
-                m,
-                n,
-                density=dens,
-                data_rvs=stats.norm(
-                    loc=location,
-                    scale=scl
-                ).rvs
-            )
+        try:
+            if value_type == "binary":
+                matrix = scipy.sparse.random(
+                    m,
+                    n,
+                    density=dens,
+                    data_rvs=np.ones
+                )
 
-        return matrix
+            elif value_type == "float":
+                matrix = scipy.sparse.random(
+                    m,
+                    n,
+                    density=dens,
+                    data_rvs=stats.norm(
+                        loc=location,
+                        scale=scl
+                    ).rvs
+                )
 
-    except ValueError:
-        print("A problem occurred. To call this function, the following arguments can be used:"
-              "random_s_matrix(m, n, density, value_type, *random_seed, *location, *scale)")
-        return
+            return matrix
+
+        except ValueError:
+            print("A problem occurred. To call this function, the following arguments can be used:"
+                  " random_s_matrix(m, n, density, value_type, *random_seed, *location, *scale)")
+            return
+
+    def decomposition_singular_values(self, A):
+        U, s, Vh = sparse.svds(A)
+        return s
+
+    def cond_num(self, s):
+        # Computes the condition number
+        c = s[-1]/s[0]
+        return c
 
 
-def decomposition_singular_values(A):
-    U, s, Vh = sparse.svds(A)
-    return s
-
-
-def cond_num(s):
-    # Computes the condition number
-    c = s[-1]/s[0]
-    return c
-
-
-A = random_s_matrix(50000, 10000, 0.1, value_type="binary")
+A = SVD().random_s_matrix(50000, 10000, 0.1, value_type="binary")
 
 svd_timer.start()
-cond_num(decomposition_singular_values(A))
+SVD().cond_num(SVD().decomposition_singular_values(A))
 svd_timer.stop()
 
-print(cond_num(decomposition_singular_values(A)))
+print(SVD().cond_num(SVD().decomposition_singular_values(A)))
 # print(random_s_matrix(10, 10, 0.25, "binary", r_seed=15).toarray())
 # plt.imshow(A.toarray())
 # plt.show()
