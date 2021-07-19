@@ -35,7 +35,7 @@ class SVD(object):
     def random_s_matrix(self, m, n, dens, value_type, r_seed=None, location=0, scl=100):
         # Creates a random matrix with fixed dimensions, sparsity, and further features
         ''' DOES NOT ACCEPT FLOAT VALUES FOR DIMENSIONS (m, n)
-            due to the usage of scipy.sparse.random as well as simple mathematics '''
+            due to the usage of scipy.sparse.random() as well as simple mathematics '''
 
         if r_seed:
             np.random.seed(r_seed)
@@ -69,8 +69,9 @@ class SVD(object):
 
     def decomposition_singular_values(self, A):
         U, s, Vh = sparse.svds(A, k=1, which='LM')
-        U, s2, Vh = sparse.svds(A, k=1, which='SM')
-        return s, s2
+        U, s2, Vh = sparse.svds(A, k=1, which='SM')  # ARPACK error sometimes traces back to this line; e.g.:
+        return s, s2                                 # ARPACK error -1: No convergence (5001 iterations, 0/1
+                                                     # eigenvectors converged)
 
     def cond_num(self, sin, sin2):
         # Computes the condition number
@@ -78,19 +79,19 @@ class SVD(object):
         return c
 
 
-#A = SVD().random_s_matrix(500, 500, 0.1, value_type="binary")
+# A = SVD().random_s_matrix(500, 500, 0.1, value_type="binary")
 ''' 13 x 7 seem to be the standard minimum dimensions required for the use of scipy.linalg.sparse.svds().
     This changes relative to what k (number of singular values/vectors to be computed) is defined as during the 
     usage of scipy...svds(). If k is not defined by the user, it is set as k=6. '''
 
-#svd_timer.start()
-#SVD().cond_num(SVD().decomposition_singular_values(A))
-#svd_timer.stop()
-#try:
- #   s, s2 = SVD().decomposition_singular_values(A)
-  #  print(SVD().cond_num(s, s2))
-#except ValueError:
- #   pass
+# svd_timer.start()
+# SVD().cond_num(SVD().decomposition_singular_values(A))
+# svd_timer.stop()
+# try:
+#  s, s2 = SVD().decomposition_singular_values(A)
+#  print(SVD().cond_num(s, s2))
+# except ValueError:
+#    pass
 
 # print(random_s_matrix(10, 10, 0.25, "binary", r_seed=15).toarray())
 # plt.imshow(A.toarray())
