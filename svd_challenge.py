@@ -68,7 +68,7 @@ class SVD(object):
             return
 
     def decomposition_singular_values(self, A):
-        U, s, Vh = sparse.svds(A)
+        U, s, Vh = sparse.svds(A, k=1)
         return s
 
     def cond_num(self, s):
@@ -77,10 +77,13 @@ class SVD(object):
         return c
 
 
-#A = SVD().random_s_matrix(50, 50, 0.1, value_type="binary")
+A = SVD().random_s_matrix(5, 5, 0.1, value_type="binary")
+''' 13 x 7 seem to be the standard minimum dimensions required for the use of scipy.linalg.sparse.svds().
+    This changes relative to what k (number of singular values/vectors to be computed) is defined as during the 
+    usage of scipy...svds(). '''
 
 #svd_timer.start()
-#SVD().cond_num(SVD().decomposition_singular_values(A))
+SVD().cond_num(SVD().decomposition_singular_values(A))
 #svd_timer.stop()
 
 # print(SVD().cond_num(SVD().decomposition_singular_values(A)))
