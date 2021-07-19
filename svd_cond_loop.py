@@ -57,9 +57,10 @@ def looping_application():
                     return
         if five:
             a *= 2
+            five = False
         else:
             a *= 5
-            five = False
+            five = True
     return
 
 
