@@ -75,7 +75,10 @@ class SVD(object):
 
     def cond_num(self, sin, sin2):
         # Computes the condition number
-        c = sin/sin2
+        if sin2 != 0:
+            c = sin/sin2
+        else:
+            c = "inf"
         return c
 
 
@@ -83,7 +86,7 @@ A = SVD().random_s_matrix(485, 485, 0.1, value_type="binary")
 ''' 13 x 7 seem to be the standard minimum dimensions required for the use of scipy.linalg.sparse.svds().
     This changes relative to what k (number of singular values/vectors to be computed) is defined as during the 
     usage of scipy...svds(). If k is not defined by the user, it is set as k=6. The ArpackNoConvergence error starts
-    occurring at approximately {485 x 485} dimensions for the matrix.'''
+    occurring at approximately {485 x 485} dimensions for the matrix. '''
 
 # svd_timer.start()
 # SVD().cond_num(SVD().decomposition_singular_values(A))
