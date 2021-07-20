@@ -51,7 +51,10 @@ def looping_application():
 
                     # Print computation time
                     timed.start()
-                    SVD().decomposition_singular_values(A)
+                    try:
+                        SVD().decomposition_singular_values(A)
+                    except scipy.sparse.linalg.eigen.ArpackNoConvergence:
+                        pass
                     SVD().cond_num(largest, smallest)
                     timed.stop()
 
