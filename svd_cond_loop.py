@@ -1,5 +1,6 @@
 from svd_challenge import SVD
 from timer import Timer
+import scipy
 
 ''' For some reason this file executes all methods that would be executed by the svd_challenge.py file when run. '''
 timed = Timer()
@@ -36,17 +37,21 @@ def looping_application():
                     print("Density: " + str(d))
 
                     # Print min/max singular value
-                    largest, smallest = SVD().decomposition_singular_values(A)
-                    print(
-                        "Max Singular Value: " + str(largest),
-                        "Min Singular Value: " + str(smallest)
-                    )
+                    try:
+                        largest, smallest = SVD().decomposition_singular_values(A)
+                        print(
+                            "Max Singular Value: " + str(largest),
+                            "Min Singular Value: " + str(smallest)
+                        )
+                    except scipy.sparse.linalg.eigen.ArpackNoConvergence:
+                        print("Could not find smallest singular value.")
 
                     # Print condition number
                     print("Condition Number: " + str(SVD().cond_num(largest, smallest)))
 
                     # Print computation time
                     timed.start()
+                    SVD().decomposition_singular_values(A)
                     SVD().cond_num(largest, smallest)
                     timed.stop()
 
