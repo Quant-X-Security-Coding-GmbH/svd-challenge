@@ -1,6 +1,6 @@
+import scipy
 from svd_challenge import SVD
 from timer import Timer
-import scipy
 
 ''' For some reason this file executes all methods that would be executed by the svd_challenge.py file when run. '''
 timed = Timer()

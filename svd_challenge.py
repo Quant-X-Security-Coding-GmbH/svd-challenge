@@ -82,7 +82,7 @@ class SVD(object):
         return c
 
 
-A = SVD().random_s_matrix(485, 485, 0.1, value_type="binary")
+# A = SVD().random_s_matrix(485, 485, 0.1, value_type="binary")
 ''' 13 x 7 seem to be the standard minimum dimensions required for the use of scipy.linalg.sparse.svds().
     This changes relative to what k (number of singular values/vectors to be computed) is defined as during the 
     usage of scipy...svds(). If k is not defined by the user, it is set as k=6. The ArpackNoConvergence error starts
@@ -91,11 +91,11 @@ A = SVD().random_s_matrix(485, 485, 0.1, value_type="binary")
 # svd_timer.start()
 # SVD().cond_num(SVD().decomposition_singular_values(A))
 # svd_timer.stop()
-try:
-    z, z2 = SVD().decomposition_singular_values(A)
-    print(SVD().cond_num(z, z2))
-except scipy.sparse.linalg.eigen.ArpackNoConvergence:
-    pass
+# try:
+#   z, z2 = SVD().decomposition_singular_values(A)
+#   print(SVD().cond_num(z, z2))
+# except scipy.sparse.linalg.eigen.ArpackNoConvergence:
+#   pass
 
 # print(random_s_matrix(10, 10, 0.25, "binary", r_seed=15).toarray())
 # plt.imshow(A.toarray())
