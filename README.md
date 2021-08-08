@@ -23,7 +23,6 @@ and can be efficiently  used as a foundation for machine learning.
 We want to test the limits and timings of SVD on binary and D-Wave processors,
 in particular for so-called sparse matrices (matrices with many zero entries).
 
-![D-Wave Logo](dwave_logo.png)
 
 ## Challenges
 
@@ -32,6 +31,8 @@ in particular for so-called sparse matrices (matrices with many zero entries).
 
 Density refers to the percentage of non-zero entries in a matrix with many zeros.
 
+
+![D-Wave Logo](dwave_logo.png)
 
 _____________________________________________________________________________________
 
