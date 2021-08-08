@@ -9,7 +9,7 @@ The linear transformation of a vector space is represented by a
 normal square matrix. 
 So Eigenvalues can only be computed for normal square matrices.
 
-![](images/Eigenvector_and_Eigenvalue.png)
+![](images/Eigenvector_and_value.png)
 
 Singular values on the other hand can be computed for any matrix, in other words for any linear map from a vector space 
 with dimension *m* to another vector space with dimension *n*).
