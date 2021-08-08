@@ -1,5 +1,37 @@
 # SVD Challenge
 
+## Possible benchmark matrices
+
+We could use sparse matrices as to be generated according to this paper by S. Rump:
+https://www.tuhh.de/ti3/paper/rump/NiRuOi11.pdf
+
+One method described is the generation of ill-conditioned matrices similar to the following
+companion matrix: Let A be an nxn integer matrix of the following form :
+
+
+           a1  a2  a3  a4  ...  a(n-1)  a(n)
+           
+           1  -l1  0   0   ...    0      0
+           
+           0   1  -l2  0   ...    0      0
+             
+           0   0    1 -l3  ...    0      0
+           
+           ...  ...   ...  ...    ...   ...
+           
+           0   0    0   0  ...    1     -l(n-1)
+
+
+
+The entries a_i  and  l_i  are defined based on the Pell equation, well known in algebraic number theory,
+according to a recursive scheme which is easy to code in any language allowing for recursive programming.
+The resulting matrices have very large condition numbers, and a specific pattern of the singular values.
+
+_____________________________________________________________________________________
+
+
+
+
 Describe your example and specify what it is demonstrating. Consider the
 following questions:
 
