@@ -1,57 +1,44 @@
 # SVD Challenge
 
-## Possible benchmark matrices
+SVD Challenge is a pedagogical example which allows you to test limits and computation timings of the used processor. 
+It belongs to the domain of quantum-ai and addresses anyone with interest in the math behind D-Wave coding.
 
-We could use sparse matrices as to be generated according to this paper by S. Rump:
-https://www.tuhh.de/ti3/paper/rump/NiRuOi11.pdf
+Singular values of a matrix are a generalization of the notion of Eigenvalues.
+With Eigenvalues we can quantify the expansion or compression of a linear transformation of a vector space.
+The linear transformation of a vector space is represented by a
+normal square matrix. 
+So Eigenvalues can only be computed for normal square matrices.
 
-One method described is the generation of ill-conditioned matrices similar to the following
-companion matrix: Let A be an nxn integer matrix of the following form :
+Singular values on the other hand can be computed for any matrix, in other words for any linear map from a vector space 
+with dimension *m* to another vector space with dimension *n*).
+Singular Value Decomposition (SVD) is a useful tool for
 
+* data reduction 
+* dimensionality reduction
 
-           a1  a2  a3  a4  ...  a(n-1)  a(n)
-           
-           1  -l1  0   0   ...    0      0
-           
-           0   1  -l2  0   ...    0      0
-             
-           0   0    1 -l3  ...    0      0
-           
-           ...  ...   ...  ...    ...   ...
-           
-           0   0    0   0  ...    1     -l(n-1)
+and can be efficiently  used as a foundation for machine learning.
 
-
-
-The entries a_i  and  l_i  are defined based on the Pell equation, well known in algebraic number theory,
-according to a recursive scheme which is easy to code in any language allowing for recursive programming.
-The resulting matrices have very large condition numbers, and a specific pattern of the singular values.
-
-_____________________________________________________________________________________
-
-
-
-
-Describe your example and specify what it is demonstrating. Consider the
-following questions:
-
-* Is it pedagogical or a usable application?
-* Does it belong to a particular domain such as material simulation or logistics? 
-* What level of Ocean proficiency does it target (beginner, advanced, pro)? 
-
-A clear description allows us to properly categorize your example.
-
-Images are encouraged. If your example produces a visualization, consider
-displaying it here.
+We want to test the limits and timings of SVD on binary and D-Wave processors,
+in particular for so-called sparse matrices (matrices with many zero entries).
 
 ![D-Wave Logo](dwave_logo.png)
 
+## Challenges
+
+* The size of a matrix (RAM limit)
+* The density of a sparse matrix (algorithmic challenge)
+
+Density refers to the percentage of non-zero entries in a matrix with many zeros.
+
+_____________________________________________________________________________________
+
 ## Usage
 
-A simple command that runs your program. For example,
+You can run the SVD challenge by executing the following command in the terminal:
 
 ```bash
-python <demo_name>.py
+cd [path to your cloned svd_challenge repository]
+python svd_challenge.py
 ```
 
 If your example requires user input, make sure to specify any input limitations.

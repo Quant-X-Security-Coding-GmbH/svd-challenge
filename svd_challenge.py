@@ -4,7 +4,7 @@ from timer import Timer
 # import matplotlib.pyplot as plt
 
 
-# Copyright [yyyy] [name of copyright owner]
+# Copyright 2021 Quant-X Security & Coding GmbH, Germany
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -81,7 +81,7 @@ svd_timer.start()
 cond_num(decomposition_singular_values(A))
 svd_timer.stop()
 
-print(cond_num(decomposition_singular(A)))
+print(cond_num(decomposition_singular_values(A)))
 # print(random_s_matrix(10, 10, 0.25, "binary", r_seed=15).toarray())
 # plt.imshow(A.toarray())
 # plt.show()
