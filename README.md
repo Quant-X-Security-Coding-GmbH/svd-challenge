@@ -9,6 +9,8 @@ The linear transformation of a vector space is represented by a
 normal square matrix. 
 So Eigenvalues can only be computed for normal square matrices.
 
+![](images/Eigenvector_and_Eigenvalue.png)
+
 Singular values on the other hand can be computed for any matrix, in other words for any linear map from a vector space 
 with dimension *m* to another vector space with dimension *n*).
 Singular Value Decomposition (SVD) is a useful tool for
@@ -29,6 +31,7 @@ in particular for so-called sparse matrices (matrices with many zero entries).
 * The density of a sparse matrix (algorithmic challenge)
 
 Density refers to the percentage of non-zero entries in a matrix with many zeros.
+
 
 _____________________________________________________________________________________
 
