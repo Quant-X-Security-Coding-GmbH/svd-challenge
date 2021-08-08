@@ -20,6 +20,8 @@ Singular Value Decomposition (SVD) is a useful tool for
 
 and can be efficiently  used as a foundation for machine learning.
 
+*TBD by Peter: SVD example*
+
 We want to test the limits and timings of SVD on binary and D-Wave processors,
 in particular for so-called sparse matrices (matrices with many zero entries).
 
@@ -45,7 +47,7 @@ cd [path to your cloned svd_challenge repository]
 python svd_challenge.py
 ```
 
-If your example requires user input, make sure to specify any input limitations.
+TBD: user input
 
 ## Code Overview
 
@@ -71,8 +73,10 @@ the code.
 
 ## References
 
-A. Person, "Title of Amazing Information", [short link
-name](https://example.com/)
+Dr. Peter Nonnemann and X.Bogomolec, "Condition Number of the Quantum Algebraic Attack on chosen Cryptosystems", [Condition Number of the QAA](https://github.com/Quant-X-Security-Coding-GmbH/QAA_Condition_Number).
+
+The condition number designates the security level of the cryptosystem against the QAA. 
+It is the ratio of the largest and the smallest singular value of the cryptosystem specific Macualay matrix.
 
 ## License
 
