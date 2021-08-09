@@ -82,7 +82,9 @@ We denote the transposed matrix of A by A^T  = ( (1 1 0), (1 1 0) )
    
    is written in the **Spectral Projector Form**
    
-   A = s1 |u1><v1| +...+ sr |ur><vr|    ( the remaining singular values are Zero ).
+   A = s1 |u1><v1| +...+ sr |ur><vr|    
+   
+   ( the remaining singular values are Zero ).
    
    where a column vector v in some R^N is written as a ket-vector v = |v>
    
