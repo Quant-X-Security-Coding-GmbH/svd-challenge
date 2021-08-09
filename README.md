@@ -19,14 +19,19 @@ Singular Value Decomposition (SVD) is a useful tool for
 * dimensionality reduction
 
 and can be efficiently  used as a foundation for machine learning.
+____________________________________________________________________________________________________
+**SVD example** : Compute the SVD of the mxn = 3x2 matrix  A  : **A = U S V^T**
 
-SVD example : Compute the SVD of the mxn = 3x2 matrix  A  : **A = U S V^T**
+The dimensions of the SVD matrices are : (3x2) = (3x3) (3x2) (2x2)
 
 We use row-wise notation for matrices in the following.
 
 A = ( ( 1 1 ), ( 1 1 ), (0 0 ) )
 
-We denote the transposed matrix(A) by A^T  = ( (1 1 0), (1 1 0) )    
+Note that the rank of A is equal to one : r = 1
+The rank of A can be computed with the **Gauß Algorithm**, by transforming A into row echelon form (ref in MATLAB).
+
+We denote the transposed matrix of A by A^T  = ( (1 1 0), (1 1 0) )    
                                                                                      
  and the unity matrix by E.
 
@@ -43,11 +48,31 @@ We denote the transposed matrix(A) by A^T  = ( (1 1 0), (1 1 0) )
        
 
 2. Compute the eigenvectors of A^T A, which form a **eigenvector basis of R^2** .
-   These are the **right singular vectors**, that is the columns of the matrix V .
+   Orthonormalize the eigenvectors with the Gram-Schmidt Algorithm.
+   The latter are the n=2 **right singular vectors**, that is the columns v_1, v_2 of the matrix V :
    
+   v_1 = ( 1/2^0.5  1/2^0.5 )^T  ,  v_2 = ( 1/2^0.5  -1/2^0.5 )^T
    
+3. There are m=3 **left singular vectors** u_1, u_2, u_3 , which are the columns of U .
+   These are computed in 2 steps:
+   The first r < m columns of U are u_j = (1/s_j) A v_j , j = 1,...,r .
+   In the example, we have r=1, so
+                           
+   u_1 = (1/s_1) A v_1 = (1/2) A ( 1/2^0.5  1/2^0.5 )^T  =  ( 1/2^0.5  1/2^0.5  0 )^T
    
+   The other m-r=3-1=2 columns of U constitute an orthonormal basis (ONB) of ker(A^T) :
    
+   A^T (u_k) = 0 , k = 1,...,(m-r)  (1)
+   
+   These can be computed by solving the homogenuous linear eq. system (1) with the Gauß Algorithm,
+   and then orthonormalizing with Gram-Schmidt :
+   
+   u_2 = ( 1/2^0.5  -1/2^0.5  0 )^T  ,  u_3 = ( 0 0 1 )^T  .
+   
+   The matrix S is the diagonal (3x2)-matrix with the singular values of above on the diagonal :
+   
+   S = ( (2 0), (0 0), (0 0) )  .
+   ___________________________________________________________________________________
 
 We want to test the limits and timings of SVD on binary and D-Wave processors,
 in particular for so-called sparse matrices (matrices with many zero entries).
