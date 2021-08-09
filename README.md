@@ -20,20 +20,28 @@ Singular Value Decomposition (SVD) is a useful tool for
 
 and can be efficiently  used as a foundation for machine learning.
 
-SVD example : Compute the SVD of the mxn = 3x2 matrix  A  : A = U S V^T
+SVD example : Compute the SVD of the mxn = 3x2 matrix  A  : **A = U S V^T**
 
-A =  1   1      We denote the transposed matrix(A) by A^T  =  1  1  0    , and the unity matrix by E .
-     1   1                                                    1  1  0
+A =  1   1     
+     1   1
      0   0
-     
+
+We denote the transposed matrix(A) by A^T  =  1  1  0    
+                                              1  1  0
+                                              
+ and the unity matrix by E.
+
 1. Compute the min(m,n) = 2 = p .
    Compute the eigenvalues la_i of the matrix A^T A . ( If  m < n , compute the la_i of A A^T )
    
    A^T A  =  2  2
-             2  2       , that is solve the characteristic eq.  det( la E  - A^T A ) = 0
+             2  2      
              
-       Its eigenvalues are la_1 = 4 , la_2 = 0      
-       The  **singular values(A) are the square roots(la_i)  s_1 = 2 , s_2 = 0 .**
+             , that is solve the characteristic eq.  det( la E  - A^T A ) = 0
+             
+       Its eigenvalues are la_1 = 4 , la_2 = 0   
+       
+  The  **singular values(A) are the square roots(la_i)  s_1 = 2 , s_2 = 0** .
        
 
 2. Compute the eigenvectors of A^T A, which form a **eigenvector basis of R^2** .
