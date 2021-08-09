@@ -75,6 +75,19 @@ We denote the transposed matrix of A by A^T  = ( (1 1 0), (1 1 0) )
    
    Caution: The singular vectors are NOT uniquely determined by A --- they are merely SOME ONB of the above mentioned 
    subspaces.
+   
+   Remark: In the **quantum computing** literature the SVD
+   
+   A = U S V^T
+   
+   is written in the **Spectral Projector Form**
+   
+   A = s1 |u1><v1| +...+ sr |ur><vr|    ( the remaining singular values are Zero ).
+   
+   where a column vector v in some R^N is written as a ket-vector v = |v>
+   
+   and the corresponding row vector v^T as a bra-vector v^T = <v|  .
+   
    ___________________________________________________________________________________
 
 We want to test the limits and timings of SVD on binary and D-Wave processors,
