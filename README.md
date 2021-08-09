@@ -39,7 +39,7 @@ We denote the transposed matrix(A) by A^T  = ( (1 1 0), (1 1 0) )
              
        Its eigenvalues are la_1 = 4 , la_2 = 0   
        
-  The  **singular values(A) are the square roots(la_i)  s_1 = 2 , s_2 = 0** .
+      The  **singular values of A are the square roots of la_i : s_1 = 2 , s_2 = 0** .
        
 
 2. Compute the eigenvectors of A^T A, which form a **eigenvector basis of R^2** .
