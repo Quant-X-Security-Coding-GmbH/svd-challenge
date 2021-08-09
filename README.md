@@ -72,6 +72,9 @@ We denote the transposed matrix of A by A^T  = ( (1 1 0), (1 1 0) )
    The matrix S is the diagonal (3x2)-matrix with the singular values of above on the diagonal :
    
    S = ( (2 0), (0 0), (0 0) )  .
+   
+   Caution: The singular vectors are NOT uniquely determined by A --- they are merely SOME ONB of the above mentioned 
+   subspaces.
    ___________________________________________________________________________________
 
 We want to test the limits and timings of SVD on binary and D-Wave processors,
