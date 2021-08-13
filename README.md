@@ -26,7 +26,10 @@ The dimensions of the SVD matrices are : (3x2) = (3x3) (3x2) (2x2)
 
 We use row-wise notation for matrices in the following.
 
+```python
+
 A = ( ( 1 1 ), ( 1 1 ), (0 0 ) )
+```
 
 Note that the rank of A is equal to one : r = 1
 The rank of A can be computed with the **Gauß Algorithm**, by transforming A into row echelon form (ref in MATLAB).
@@ -38,13 +41,13 @@ We denote the transposed matrix of A by A^T  = ( (1 1 0), (1 1 0) )
 1. Compute the min(m,n) = 2 = p .
    Compute the eigenvalues la_i of the matrix A^T A . ( If  m < n , compute the la_i of A A^T )
    
-   A^T A  =  ( (2 2), (2 2) )   
+   A^T A  =  ( (2 2), (2 2) )   , 
+   
+   that is solve the characteristic eq.  det( la E  - A^T A ) = 0
              
-       , that is solve the characteristic eq.  det( la E  - A^T A ) = 0
-             
-       Its eigenvalues are la_1 = 4 , la_2 = 0   
+   Its eigenvalues are la_1 = 4 , la_2 = 0   
        
-      The  **singular values of A are the square roots of la_i : s_1 = 2 , s_2 = 0** .
+   The  **singular values of A are the square roots of la_i : s_1 = 2 , s_2 = 0** .
        
 
 2. Compute the eigenvectors of A^T A, which form a **eigenvector basis of R^2** .
@@ -84,7 +87,7 @@ We denote the transposed matrix of A by A^T  = ( (1 1 0), (1 1 0) )
    
    A = s1 |u1><v1| +...+ sr |ur><vr|    
    
-   ( the remaining singular values are Zero ).
+   (the remaining singular values are Zero).
    
    where a column vector v in some R^N is written as a ket-vector v = |v>
    
