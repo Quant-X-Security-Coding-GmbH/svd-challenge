@@ -13,8 +13,8 @@ So Eigenvalues can only be computed for normal square matrices.
 
 Singular values on the other hand can be computed for any matrix, in other words:
 
-For any linear map from a vector space 
-with dimension *m* to another vector space with dimension *n*).
+Singular values can be computed for any linear map from a vector space 
+with dimension *m* to another vector space with dimension *n*.
 Singular Value Decomposition (SVD) is a useful tool for
 
 * data reduction 
